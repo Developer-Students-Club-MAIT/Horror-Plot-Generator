@@ -28,5 +28,6 @@ def home():
 
 if __name__ == "__main__":
     PATH = './model/model.pt'
-    model = torch.load(PATH, map_location=torch.device('cpu'))
+    global model 
+    model= torch.load(PATH, map_location=torch.device('cpu'))
     app.run(debug=True)
