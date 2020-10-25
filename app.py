@@ -64,7 +64,7 @@ class CharRNN(nn.Module):
         return hidden
         
 PATH = './model/model.pt'
-model = torch.load(PATH,map_location=torch.device('cpu'))
+model = torch.load(PATH, map_location=torch.device('cpu'))
 
 @app.route('/api', methods=['GET'])
 def home():
