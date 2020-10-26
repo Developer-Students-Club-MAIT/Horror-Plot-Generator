@@ -7,7 +7,10 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 train_on_gpu = torch.cuda.is_available()
-model= torch.load('./model/model.pt', map_location=torch.device('cpu'))
+
+def stored_model(get_name):
+    global model
+    model = get_name
 
 @app.route('/api', methods=['GET'])
 def home():
@@ -27,4 +30,6 @@ def home():
 
 if __name__ == "__main__":
     from model_class import CharRNN
+    model= torch.load('./model/model.pt', map_location=torch.device('cpu'))
+    stored_model(model)
     app.run(debug=True)
