@@ -4,13 +4,10 @@ from torch import nn
 import torch.nn.functional as F
 from utils import *
 from flask import Flask, jsonify, request
+from model_class import CharRNN
 
 app = Flask(__name__)
 train_on_gpu = torch.cuda.is_available()
-
-def stored_model(get_name):
-    global model
-    model = get_name
 
 @app.route('/api', methods=['GET'])
 def home():
@@ -25,11 +22,9 @@ def home():
     elif plot_length == 'large':
         length = 2000
     start_words = query.get('start_words')
-    answer = PlotGenerate(model, length, prime=start_words, top_k=5)
+    answer = PlotGenerate(app.config['model'], length, prime=start_words, top_k=5)
     return jsonify({'resultant_story': answer})
 
 if __name__ == "__main__":
-    from model_class import CharRNN
-    model= torch.load('./model/model.pt', map_location=torch.device('cpu'))
-    stored_model(model)
+    app.config['model']= torch.load('./model/model.pt', map_location=torch.device('cpu'))
     app.run(debug=True)
