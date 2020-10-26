@@ -70,6 +70,7 @@ def home():
     length = 100
     start_words = 'the'
     query = request.args
+    model= torch.load('./model/model.pt', map_location=torch.device('cpu'))
     plot_length = query.get('len_choice')
     if plot_length == 'small':
         length = 500
