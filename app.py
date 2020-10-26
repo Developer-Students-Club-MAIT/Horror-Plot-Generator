@@ -8,6 +8,7 @@ from model_class import CharRNN
 
 app = Flask(__name__)
 train_on_gpu = torch.cuda.is_available()
+app.config['model']= torch.load('./model/model.pt', map_location=torch.device('cpu'))
 
 @app.route('/api', methods=['GET'])
 def home():
@@ -26,5 +27,4 @@ def home():
     return jsonify({'resultant_story': answer})
 
 if __name__ == "__main__":
-    app.config['model']= torch.load('./model/model.pt', map_location=torch.device('cpu'))
     app.run(debug=True)
