@@ -6,6 +6,10 @@ from model_class import CharRNN
 
 train_on_gpu = torch.cuda.is_available()
 
+def get_model():
+    model = torch.load('./model/model.pt', map_location=torch.device('cpu'))
+    return model
+
 def predict(net, char, h=None, top_k=None):
         ''' Given a character, predict the next character.
             Returns the predicted character and the hidden state.

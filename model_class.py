@@ -1,7 +1,5 @@
 import torch
 from torch import nn
-import torch.nn.functional as F
-
 train_on_gpu = torch.cuda.is_available()
 
 class CharRNN(nn.Module):
