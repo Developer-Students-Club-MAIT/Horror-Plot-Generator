@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hallowen Plot Generator</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+    </head>
+    <body>
+
+            <div class="jumbotron jumbotron-fluid bg-info text-white text-center" style="background-color:#aaa;">
+                <div class="container">
+                     <h1 id="hea">Hallowen Plot Generator</h1>
+             <P class="lead py-2">
+         Your Smart Plot Generator
+             </P>
+         </div>
+         </div>
+        </nav>
+        <section>
+            <div>
+
+</div>
+            </div>
+            <form action="\predict" method="post">
+                <div class=" container text-field text-center  py-5 padding">
+                    <input type="text" name="ip" placeholder="Start your story here(max length 5)..."  size="80">
+                    <select name="model-select" class="dropbtn">
+                {% for i in choices %}
+              <option value="{{ i.name }}">{{ i.name }}</option>
+              {% endfor %}  
+            </select>
+                    <button type="submit" class="btn-primary">
+                        Predict Next...
+                    </button>
+                </div>
+            </form>
+            <div  class ="container" id="prev">
+                <h2 class="display-6 text-center">Results</h2>
+                <br>
+                {{text}}
+            </div>
+        </section>
+        <div class="container">
+            
+
+<br>
+<br>
+        </div>
+        <br>
+        <br>
+        
+       <footer>
+        <div class="container-fluid padding">
+            <div class="row text-center padding" id="con">
+                <div class="col-12">
+                    <h3 class="display-4">Connect</h3>
+                    <hr>
+                </div>
+                <div class="col-12 social padding">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+       </footer>
+    </body>
+</html>
